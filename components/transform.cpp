@@ -22,7 +22,7 @@ namespace malt {
 
     void transform::rotate(const glm::quat& q)
     {
-        rot = q * rot;
+        rot *= q;
         rot = glm::normalize(rot);
     }
 
