@@ -19,7 +19,7 @@ namespace malt
     class transform : public malt::component
     {
         glm::vec3 pos;
-        glm::vec3 scale;
+        glm::vec3 scale = {1, 1, 1};
         glm::quat rot;
     public:
 
@@ -27,6 +27,8 @@ namespace malt
 
         void rotate(const glm::quat& q);
         void rotate(const glm::vec3& euler);
+
+        void set_scale(const glm::vec3& s);
 
         glm::mat4 get_mat4() const;
 

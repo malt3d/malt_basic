@@ -12,7 +12,7 @@ namespace malt {
     {
         switch (s) {
         case space::self:
-            pos += rot*dis;
+            pos += rot * dis;
             break;
         case space::world:
             pos += dis;
@@ -23,6 +23,7 @@ namespace malt {
     void transform::rotate(const glm::quat& q)
     {
         rot = q * rot;
+        rot = glm::normalize(rot);
     }
 
     void transform::rotate(const glm::vec3& euler)
@@ -35,10 +36,15 @@ namespace malt {
 
     glm::mat4 transform::get_mat4() const
     {
-        auto s = glm::scale(glm::vec3(1, 1, 1));
+        auto s = glm::scale(scale);
         auto r = glm::toMat4(rot);
         auto t = glm::translate(pos);
         return t * r * s;
+    }
+
+    void transform::set_scale(const glm::vec3& s)
+    {
+        scale = s;
     }
 }
 
