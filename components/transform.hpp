@@ -32,6 +32,10 @@ namespace malt
 
         glm::mat4 get_mat4() const;
 
+        glm::vec3 get_up() const;
+        glm::vec3 get_forward() const;
+        glm::vec3 get_right() const;
+
         const glm::vec3& get_pos() const { return pos; }
     };
 }

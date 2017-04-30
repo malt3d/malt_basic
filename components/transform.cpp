@@ -46,6 +46,21 @@ namespace malt {
     {
         scale = s;
     }
+
+    glm::vec3 transform::get_up() const
+    {
+        return rot * glm::vec3(0, 1, 0);
+    }
+
+    glm::vec3 transform::get_forward() const
+    {
+        return rot * glm::vec3(0, 0, 1);
+    }
+
+    glm::vec3 transform::get_right() const
+    {
+        return rot * glm::vec3(1, 0, 0);
+    }
 }
 
 MALT_IMPLEMENT_COMP(malt::transform)

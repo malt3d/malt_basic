@@ -3,7 +3,7 @@ project(malt)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES components/transform.cpp components/transform.hpp basic_module.cpp basic_module.hpp)
+set(SOURCE_FILES components/transform.cpp components/transform.hpp basic_module.cpp basic_module.hpp input.hpp time.hpp)
 add_library(malt_basic SHARED ${SOURCE_FILES})
 add_executable(transform_test test/test_transform.cpp)
 
