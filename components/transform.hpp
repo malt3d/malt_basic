@@ -10,6 +10,12 @@
 
 namespace malt
 {
+    enum class space
+    {
+        self,
+        world
+    };
+
     class transform : public malt::component
     {
         glm::vec3 pos;
@@ -17,8 +23,14 @@ namespace malt
         glm::quat rot;
     public:
 
-        void translate(const glm::vec3& dis);
-        void translate(float dx, float dy, float dz);
+        void translate(const glm::vec3& dis, space s = space::self);
+
+        void rotate(const glm::quat& q);
+        void rotate(const glm::vec3& euler);
+
+        glm::mat4 get_mat4() const;
+
+        const glm::vec3& get_pos() const { return pos; }
     };
 }
 

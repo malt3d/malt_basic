@@ -8,9 +8,14 @@
 #include <malt/module.hpp>
 #include <malt/list.hpp>
 
+namespace malt
+{
+    class transform;
+}
+
 struct basic_module_def
 {
-    using components = malt::mp::list<class transform>;
+    using components = malt::mp::list<class malt::transform>;
 };
 
 #endif //MALT_BASIC_MODULE_HPP
