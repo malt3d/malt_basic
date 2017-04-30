@@ -15,7 +15,7 @@ namespace malt
 
 struct basic_module_def
 {
-    using components = malt::mp::list<class malt::transform>;
+    using components = malt::mp::list<class malt::transform, class fps_control>;
 };
 
 #endif //MALT_BASIC_MODULE_HPP

@@ -9,7 +9,7 @@ namespace malt
 {
 namespace time
 {
-    std::chrono::milliseconds get_delta_time();
+    float get_delta_time();
 }
 }
 
