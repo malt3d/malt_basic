@@ -25,8 +25,8 @@ namespace malt
 
         void translate(const glm::vec3& dis, space s = space::self);
 
-        void rotate(const glm::quat& q);
-        void rotate(const glm::vec3& euler);
+        void rotate(const glm::quat& q, space s = space::self);
+        void rotate(const glm::vec3& euler, space s = space::self);
 
         void set_scale(const glm::vec3& s);
 

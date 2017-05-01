@@ -40,7 +40,8 @@ void fps_control::Handle(malt::update)
     auto diff = (malt::input::get_cursor() - prev) / 20.f;
     prev = malt::input::get_cursor();
 
-    trans->rotate(glm::vec3(-diff.y, -diff.x, 0));
+    trans->rotate(glm::vec3(-diff.y, 0, 0));
+    trans->rotate(glm::vec3(0, -diff.x, 0), malt::space::world);
 }
 
 void fps_control::Handle(malt::start)

@@ -20,18 +20,26 @@ namespace malt {
         }
     }
 
-    void transform::rotate(const glm::quat& q)
+    void transform::rotate(const glm::quat& q, space s)
     {
-        rot *= q;
+        if (s == space::world)
+        {
+            rot = q * rot;
+        }
+        else
+        {
+            rot *= q;
+        }
+
         rot = glm::normalize(rot);
     }
 
-    void transform::rotate(const glm::vec3& euler)
+    void transform::rotate(const glm::vec3& euler, space s)
     {
         auto around_x = glm::angleAxis(glm::radians(euler.x), glm::vec3(1, 0, 0));
         auto around_y = glm::angleAxis(glm::radians(euler.y), glm::vec3(0, 1, 0));
         auto around_z = glm::angleAxis(glm::radians(euler.z), glm::vec3(0, 0, 1));
-        rotate(around_x * around_y * around_z);
+        rotate(around_x * around_y * around_z, s);
     }
 
     glm::mat4 transform::get_mat4() const
