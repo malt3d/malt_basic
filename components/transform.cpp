@@ -2,8 +2,8 @@
 // Created by fatih on 4/28/17.
 //
 
-#include "transform.hpp"
-#include <malt/component_mgr.cpp>
+#include <malt_basic/components/transform.hpp>
+#include <malt/component_mgr_impl.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/quaternion.hpp>
 

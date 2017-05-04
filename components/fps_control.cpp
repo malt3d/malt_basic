@@ -2,9 +2,9 @@
 // Created by Mehmet Fatih BAKIR on 01/05/2017.
 //
 
-#include "fps_control.hpp"
+#include <malt_basic/components/fps_control.hpp>
 #include <malt_basic/components/transform.hpp>
-#include <malt/component_mgr.cpp>
+#include <malt/component_mgr_impl.hpp>
 #include <GLFW/glfw3.h>
 #include <malt_basic/time.hpp>
 #include <malt_basic/input.hpp>
@@ -40,7 +40,7 @@ void fps_control::Handle(malt::update)
     auto diff = (malt::input::get_cursor() - prev) / 20.f;
     prev = malt::input::get_cursor();
 
-    trans->rotate(glm::vec3(-diff.y, 0, 0));
+    trans->rotate(glm::vec3(diff.y, 0, 0));
     trans->rotate(glm::vec3(0, -diff.x, 0), malt::space::world);
 }
 

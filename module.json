@@ -1,0 +1,14 @@
+{
+  "name": "malt_basic",
+  "readable_name": "Malt.Basic",
+  "version": "0.1.0",
+  "components": [
+    "transform"
+  ],
+  "globals": [],
+  "dependencies": [
+    {
+      "name": "malt"
+    }
+  ]
+}

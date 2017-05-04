@@ -1,20 +1,37 @@
 cmake_minimum_required(VERSION 3.5)
 project(malt)
 
+LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/")
 set(CMAKE_CXX_STANDARD 14)
 
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -undefined dynamic_lookup")
 endif()
 
-set(SOURCE_FILES components/transform.cpp components/transform.hpp basic_module.cpp basic_module.hpp input.hpp time.hpp components/fps_control.cpp components/fps_control.hpp)
+find_package(malt_core REQUIRED)
+
+include(Malt)
+
+set(HEADER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/include/malt_basic")
+set(HEADER_FILES
+        ${HEADER_PATH}/basic_module.hpp
+        ${HEADER_PATH}/input.hpp
+        ${HEADER_PATH}/time.hpp
+        ${HEADER_PATH}/components/transform.hpp
+        ${HEADER_PATH}/components/fps_control.hpp
+        )
+
+set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_control.cpp)
 add_library(malt_basic SHARED ${SOURCE_FILES})
-add_executable(transform_test test/test_transform.cpp)
+
+target_link_libraries(malt_basic PUBLIC malt_core)
+
+malt_def_module(malt_basic)
+
+malt_add_module(malt_basic malt_core)
 
 set_target_properties(malt_basic PROPERTIES POSITION_INDEPENDENT_CODE ON)
-target_include_directories(malt_basic PUBLIC "../")
-target_link_libraries(malt_basic malt_core)
-
-target_link_libraries(transform_test malt_basic)
 
 target_compile_definitions(malt_basic PUBLIC GLM_ENABLE_EXPERIMENTAL=1)
+
+malt_install(malt_basic ${HEADER_PATH})
