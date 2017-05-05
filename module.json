@@ -8,7 +8,7 @@
   "globals": [],
   "dependencies": [
     {
-      "name": "malt"
+      "name": "malt_core"
     }
   ]
 }
