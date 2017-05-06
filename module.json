@@ -8,7 +8,8 @@
   "globals": [],
   "dependencies": [
     {
-      "name": "malt_core"
+      "name": "malt_core",
+      "src" : "malt3d/malt_core"
     }
   ]
 }

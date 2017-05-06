@@ -18,9 +18,23 @@ namespace malt
 
     class transform : public malt::component
     {
+        transform* m_parent = nullptr;
+
         glm::vec3 pos;
         glm::vec3 scale = {1, 1, 1};
         glm::quat rot;
+
+        mutable bool m_local_mat_dirty;
+        mutable glm::mat4 m_local_mat;
+
+        mutable bool m_world_mat_dirty;
+        mutable glm::mat4 m_world_mat;
+
+        void set_local_dirty()
+        {
+            m_local_mat_dirty = true;
+            set_world_dirty();
+        }
     public:
 
         void translate(const glm::vec3& dis, space s = space::self);
@@ -30,13 +44,17 @@ namespace malt
 
         void set_scale(const glm::vec3& s);
 
-        glm::mat4 get_mat4() const;
+        glm::mat4 get_world_mat4() const;
+        glm::mat4 get_local_mat4() const;
 
         glm::vec3 get_up() const;
         glm::vec3 get_forward() const;
         glm::vec3 get_right() const;
 
         const glm::vec3& get_pos() const { return pos; }
+
+        void set_parent(transform* t);
+        void set_world_dirty();
     };
 }
 

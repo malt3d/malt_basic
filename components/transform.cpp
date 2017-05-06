@@ -18,6 +18,7 @@ namespace malt {
             pos += dis;
             break;
         }
+        set_local_dirty();
     }
 
     void transform::rotate(const glm::quat& q, space s)
@@ -32,6 +33,7 @@ namespace malt {
         }
 
         rot = glm::normalize(rot);
+        set_local_dirty();
     }
 
     void transform::rotate(const glm::vec3& euler, space s)
@@ -42,17 +44,50 @@ namespace malt {
         rotate(around_x * around_y * around_z, s);
     }
 
-    glm::mat4 transform::get_mat4() const
+    glm::mat4 transform::get_local_mat4() const
     {
-        auto s = glm::scale(scale);
-        auto r = glm::toMat4(rot);
-        auto t = glm::translate(pos);
-        return t * r * s;
+        if (m_local_mat_dirty)
+        {
+            auto s = glm::scale(scale);
+            auto r = glm::toMat4(rot);
+            auto t = glm::translate(pos);
+            m_local_mat = t * r * s;
+            m_local_mat_dirty = false;
+        }
+        return m_local_mat;
+    }
+
+    glm::mat4 transform::get_world_mat4() const
+    {
+        if (m_parent == nullptr)
+        {
+            return get_local_mat4();
+        }
+
+        if (m_world_mat_dirty)
+        {
+            m_world_mat = get_local_mat4() * m_parent->get_world_mat4();
+            m_world_mat_dirty = false;
+        }
+
+        return m_world_mat;
+    }
+
+    void transform::set_parent(transform* t)
+    {
+        m_parent = t;
+        set_world_dirty();
+    }
+
+    void transform::set_world_dirty()
+    {
+        m_world_mat_dirty = true;
     }
 
     void transform::set_scale(const glm::vec3& s)
     {
         scale = s;
+        set_local_dirty();
     }
 
     glm::vec3 transform::get_up() const

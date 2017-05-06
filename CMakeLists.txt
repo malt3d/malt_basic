@@ -30,3 +30,9 @@ malt_add_module(malt_basic malt_core)
 target_compile_definitions(malt_basic PUBLIC GLM_ENABLE_EXPERIMENTAL=1)
 
 malt_install(malt_basic ${HEADER_PATH})
+
+add_executable(tests test/test_transform.cpp)
+target_link_libraries(tests PUBLIC malt_basic)
+
+enable_testing()
+add_test(NAME malt_basic_tests COMMAND tests)
