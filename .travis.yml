@@ -15,6 +15,13 @@ script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - cd ..
+  - git clone https://github.com/g-truc/glm --depth=1
+  - mkdir glm_build
+  - cd glm_build
+  - cmake ../glm
+  - cmake --build .
+  - sudo cmake --build . -- install
+  - cd ..
   - git clone https://github.com/malt3d/malt_cmake --depth=1
   - git clone https://github.com/malt3d/malt_tool --depth=1
   - git clone https://github.com/malt3d/malt_core --depth=1
