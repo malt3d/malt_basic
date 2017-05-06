@@ -23,12 +23,9 @@ set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_contro
 add_library(malt_basic SHARED ${SOURCE_FILES})
 
 target_link_libraries(malt_basic PUBLIC malt_core)
-
 malt_def_module(malt_basic)
 
 malt_add_module(malt_basic malt_core)
-
-set_target_properties(malt_basic PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 target_compile_definitions(malt_basic PUBLIC GLM_ENABLE_EXPERIMENTAL=1)
 
