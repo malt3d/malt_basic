@@ -1,0 +1,22 @@
+dist: trusty
+sudo: require
+language: cpp
+compiler: gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-6
+      - g++-6
+      - cmake
+      - git
+script:
+  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+  - cd ..
+  - git clone https://github.com/malt3d/malt_cmake --depth=1
+  - git clone https://github.com/malt3d/malt_tool --depth=1
+  - git clone https://github.com/malt3d/malt_core --depth=1
+  - ./malt_tool init
+  - ./malt_tool module build malt_basic
