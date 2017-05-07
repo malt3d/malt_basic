@@ -6,7 +6,7 @@
 #include <malt_basic/components/transform.hpp>
 #include <malt/component_mgr_impl.hpp>
 #include <GLFW/glfw3.h>
-#include <malt_basic/time.hpp>
+#include <malt/engine.hpp>
 #include <malt_basic/input.hpp>
 
 MALT_IMPLEMENT_COMP(fps_control)

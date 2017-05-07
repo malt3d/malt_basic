@@ -24,7 +24,7 @@ script:
   - sudo cmake --build . -- install
   - cd ..
   - mkdir glfw_build
-  - cmale ../glfw
+  - cmake ../glfw
   - cmake -- build .
   - sudo cmake --build . -- install
   - cd ..
