@@ -23,15 +23,9 @@ script:
   - cmake --build .
   - sudo cmake --build . -- install
   - cd ..
-  - mkdir glfw_build
-  - cd glfw_build
-  - cmake ../glfw
-  - cmake -- build .
-  - sudo cmake --build . -- install
-  - cd ..
-  - git clone https://github.com/malt3d/malt_cmake --depth=1
-  - git clone https://github.com/malt3d/malt_tool --depth=1
-  - git clone https://github.com/malt3d/malt_core --depth=1
+  - git clone --recursive -j8 https://github.com/malt3d/malt_cmake --depth=1
+  - git clone --recursive -j8 https://github.com/malt3d/malt_tool --depth=1
+  - git clone --recursive -j8 https://github.com/malt3d/malt_core --depth=1
   - ./malt_tool/malt.py init
   - ./malt_tool/malt.py module build malt_basic
   - ./malt_tool/malt.py module test malt_basic

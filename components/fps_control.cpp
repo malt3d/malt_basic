@@ -5,7 +5,6 @@
 #include <malt_basic/components/fps_control.hpp>
 #include <malt_basic/components/transform.hpp>
 #include <malt/component_mgr_impl.hpp>
-#include <GLFW/glfw3.h>
 #include <malt/engine.hpp>
 #include <malt_basic/input.hpp>
 
@@ -15,19 +14,19 @@ void fps_control::Handle(malt::update)
 {
     auto trans = get_component<malt::transform>();
     glm::vec3 displacement;
-    if (malt::input::get_key_down(GLFW_KEY_S))
+    if (malt::input::get_key_down(malt::input::key_code::S))
     {
         displacement += glm::vec3{0, 0, -1};
     }
-    if (malt::input::get_key_down(GLFW_KEY_W))
+    if (malt::input::get_key_down(malt::input::key_code::W))
     {
         displacement += glm::vec3{0, 0, 1};
     }
-    if (malt::input::get_key_down(GLFW_KEY_A))
+    if (malt::input::get_key_down(malt::input::key_code::A))
     {
         displacement += glm::vec3{1, 0, 0};
     }
-    if (malt::input::get_key_down(GLFW_KEY_D))
+    if (malt::input::get_key_down(malt::input::key_code::D))
     {
         displacement += glm::vec3{-1, 0, 0};
     }
