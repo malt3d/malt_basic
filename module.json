@@ -3,7 +3,7 @@
   "readable_name": "Malt.Basic",
   "version": "0.1.0",
   "components": [
-    "transform"
+    "malt::transform"
   ],
   "globals": [],
   "dependencies": [
