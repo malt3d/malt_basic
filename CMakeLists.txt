@@ -14,13 +14,12 @@ set(HEADER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/include/malt_basic")
 set(HEADER_FILES
         ${HEADER_PATH}/basic_module.hpp
         ${HEADER_PATH}/input.hpp
-        ${HEADER_PATH}/time.hpp
         ${HEADER_PATH}/components/transform.hpp
         ${HEADER_PATH}/components/fps_control.hpp
         )
 
 set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_control.cpp)
-add_library(malt_basic SHARED ${SOURCE_FILES})
+add_library(malt_basic SHARED ${SOURCE_FILES} ${HEADER_FILES})
 
 malt_def_module(malt_basic)
 
