@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <malt/engine_impl.hpp>
+#include <malt/engine_defs.hpp>
 
 namespace malt
 {
