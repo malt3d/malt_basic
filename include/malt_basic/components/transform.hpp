@@ -18,7 +18,8 @@ namespace malt
 
     class transform : public malt::component
     {
-        transform* m_parent = nullptr;
+        std::vector<track_ptr<transform>> m_children;
+        track_ptr<transform> m_parent;
 
         glm::vec3 pos;
         glm::vec3 scale = {1, 1, 1};

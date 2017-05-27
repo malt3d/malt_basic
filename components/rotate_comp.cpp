@@ -9,7 +9,7 @@
 void rotate_comp::Handle(malt::update)
 {
     auto t = get_component<malt::transform>();
-    t->rotate(glm::vec3{0, 15, 0} * malt::time::get_delta_time(), malt::space::world);
+    t->rotate(glm::vec3{0, 30, 0} * malt::time::get_delta_time(), malt::space::world);
 }
 
 void rotate_comp::Handle(malt::start)

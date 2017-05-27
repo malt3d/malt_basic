@@ -66,7 +66,7 @@ namespace malt {
 
         if (m_world_mat_dirty)
         {
-            m_world_mat = get_local_mat4() * m_parent->get_world_mat4();
+            m_world_mat = m_parent->get_world_mat4() * get_local_mat4();
             m_world_mat_dirty = false;
         }
 
@@ -75,13 +75,18 @@ namespace malt {
 
     void transform::set_parent(transform* t)
     {
-        m_parent = t;
+        m_parent = get_ptr(*t);
+        t->m_children.push_back(get_ptr(*this));
         set_world_dirty();
     }
 
     void transform::set_world_dirty()
     {
         m_world_mat_dirty = true;
+        for (auto& child_p : m_children)
+        {
+            child_p->set_world_dirty();
+        }
     }
 
     void transform::set_scale(const glm::vec3& s)
