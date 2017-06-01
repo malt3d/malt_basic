@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <malt/engine_defs.hpp>
-
 namespace malt
 {
     namespace input

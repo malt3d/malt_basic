@@ -4,6 +4,8 @@ project(malt)
 LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../malt_cmake/")
 set(CMAKE_CXX_STANDARD 14)
 
+find_package(GLM REQUIRED)
+
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -undefined dynamic_lookup")
 endif()
@@ -27,6 +29,7 @@ malt_def_module(malt_basic)
 malt_add_module(malt_basic malt_core)
 
 target_compile_definitions(malt_basic PUBLIC GLM_ENABLE_EXPERIMENTAL=1)
+target_include_directories(malt_basic PUBLIC ${GLM_INCLUDE_DIRS})
 
 malt_install(malt_basic ${HEADER_PATH})
 
