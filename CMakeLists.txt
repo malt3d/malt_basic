@@ -22,7 +22,7 @@ set(HEADER_FILES
         )
 
 set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_control.cpp components/rotate_comp.cpp)
-add_library(malt_basic SHARED ${SOURCE_FILES} ${HEADER_FILES})
+add_library(malt_basic ${MALT_LIB_TYPE} ${SOURCE_FILES} ${HEADER_FILES})
 
 malt_def_module(malt_basic)
 
