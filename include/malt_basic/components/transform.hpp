@@ -43,7 +43,9 @@ namespace malt
         void rotate(const glm::quat& q, space s = space::self);
         void rotate(const glm::vec3& euler, space s = space::self);
 
+        void set_position(const glm::vec3& p);
         void set_scale(const glm::vec3& s);
+        void set_rotation(const glm::quat& q);
 
         glm::mat4 get_world_mat4() const;
         glm::mat4 get_local_mat4() const;
@@ -51,6 +53,8 @@ namespace malt
         glm::vec3 get_up() const;
         glm::vec3 get_forward() const;
         glm::vec3 get_right() const;
+
+        void look_at(const glm::vec3& to);
 
         const glm::vec3& get_pos() const { return pos; }
 

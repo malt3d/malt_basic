@@ -89,3 +89,13 @@ TEST_CASE("malt::transform world mat4", "[malt::transform]")
     child.rotate({0, -90, 0});
     REQUIRE(equal(glm::vec3(child.get_world_mat4() * glm::vec4(0, 0, 1, 0)), {0, 0, 1}));
 }
+
+
+TEST_CASE("malt::transform look_at", "[malt::transform]")
+{
+    malt::transform t;
+
+    t.look_at({5, 0, 5});
+
+    REQUIRE(equal(t.get_forward(), glm::normalize(glm::vec3{1, 0, 1})));
+}
