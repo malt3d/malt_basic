@@ -164,7 +164,3 @@ namespace malt {
         rotate(rotation, space::self);
     }
 }
-
-MALT_IMPLEMENT_COMP(malt::transform)
-
-

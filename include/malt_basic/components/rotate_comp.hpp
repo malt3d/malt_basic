@@ -11,6 +11,7 @@ class rotate_comp : public malt::component
 public:
     void Handle(malt::start);
     void Handle(malt::update);
+    REFLECT(rotate_comp, NOMEM);
 };
 
 

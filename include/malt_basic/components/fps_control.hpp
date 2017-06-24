@@ -17,6 +17,9 @@ public:
     void set_speed(float s);
     void Handle(malt::start);
     void Handle(malt::update);
+
+    REFLECT(fps_control,
+            MEM(speed));
 };
 
 #endif //MALT_FPS_CONTROL_HPP
