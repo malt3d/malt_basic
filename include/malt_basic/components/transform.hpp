@@ -56,6 +56,11 @@ namespace malt
 
         void set_parent(transform* t);
         void set_world_dirty();
+
+        REFLECT(malt::transform,
+                MEM(pos),
+                MEM(rot),
+                MEM(scale));
     };
 }
 

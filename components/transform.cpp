@@ -110,7 +110,3 @@ namespace malt {
         return rot * glm::vec3(1, 0, 0);
     }
 }
-
-MALT_IMPLEMENT_COMP(malt::transform)
-
-
