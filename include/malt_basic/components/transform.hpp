@@ -62,6 +62,7 @@ namespace malt
         void set_world_dirty();
 
         REFLECT(malt::transform,
+                MEM(m_parent),
                 MEM(pos),
                 MEM(rot),
                 MEM(scale));

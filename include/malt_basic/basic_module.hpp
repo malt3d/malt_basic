@@ -6,7 +6,7 @@
 #define MALT_BASIC_MODULE_HPP
 
 #include <malt/module.hpp>
-#include <malt/list.hpp>
+#include <malt/meta.hpp>
 
 namespace malt
 {

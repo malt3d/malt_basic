@@ -3,7 +3,7 @@
 //
 
 #include <malt_basic/components/rotate_comp.hpp>
-#include <malt/component_mgr_impl.hpp>
+#include <malt/detail/component_mgr_impl.hpp>
 #include <malt_basic/components/transform.hpp>
 
 void rotate_comp::Handle(malt::update)

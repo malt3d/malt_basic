@@ -4,7 +4,7 @@
 
 #include <malt_basic/components/fps_control.hpp>
 #include <malt_basic/components/transform.hpp>
-#include <malt/component_mgr_impl.hpp>
+#include <malt/detail/component_mgr_impl.hpp>
 #include <malt/engine.hpp>
 #include <malt_basic/input.hpp>
 
