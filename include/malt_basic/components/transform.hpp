@@ -38,6 +38,8 @@ namespace malt
         }
     public:
 
+        void Handle(malt::start);
+
         void translate(const glm::vec3& dis, space s = space::self);
 
         void rotate(const glm::quat& q, space s = space::self);

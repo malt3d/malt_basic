@@ -19,9 +19,10 @@ set(HEADER_FILES
         ${HEADER_PATH}/components/transform.hpp
         ${HEADER_PATH}/components/fps_control.hpp
         ${HEADER_PATH}/components/rotate_comp.hpp
+        ${HEADER_PATH}/scene.hpp
         )
 
-set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_control.cpp components/rotate_comp.cpp)
+set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_control.cpp components/rotate_comp.cpp src/scene.cpp)
 add_library(malt_basic ${MALT_LIB_TYPE} ${SOURCE_FILES} ${HEADER_FILES})
 
 malt_def_module(malt_basic)

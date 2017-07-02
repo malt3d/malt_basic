@@ -163,4 +163,12 @@ namespace malt {
         auto rotation = RotationBetweenVectors(get_forward(), to - get_pos());
         rotate(rotation, space::self);
     }
+
+    void transform::Handle(malt::start) {
+        if (m_parent)
+        {
+            set_parent(m_parent.get());
+        }
+        set_local_dirty();
+    }
 }
