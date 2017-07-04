@@ -8,6 +8,7 @@
 #include <malt/entity.hpp>
 #include <malt/serialization.hpp>
 #include <iostream>
+#include <malt/error.hpp>
 
 namespace malt
 {
@@ -21,7 +22,14 @@ namespace malt
             for (auto comp : entity["components"])
             {
                 auto name = comp.first.as<std::string>();
-                malt::add_component(name.c_str(), e);
+                try{
+                    malt::add_component(name.c_str(), e);
+                }
+                catch (malt::undefined_component& err)
+                {
+                    std::cerr << "component " << name << " does not exist!\n";
+                    throw;
+                }
             }
             entities.emplace(e.get_name(), e);
         }
@@ -39,13 +47,6 @@ namespace malt
                 auto&& refl = dynamic_reflect(c);
                 refl->get_deserialize_function()(std::move(val), c);
             }
-        }
-
-        for (auto e : entities)
-        {
-            YAML::Node n;
-            malt::serialize(n, e.second);
-            std::cout << n << '\n';
         }
     }
 }
