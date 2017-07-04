@@ -16,6 +16,13 @@ namespace malt
     {
         std::map<std::string, entity> entities;
 
+        /*
+         * Two pass deserialization:
+         * First pass creates all of the components, but does not deserialize them yet
+         * second pass does not create any new component but merely deserializes them.
+         * This allows pointers between components to be loaded without too much hassle.
+         */
+
         for (auto entity : scene_node["entities"])
         {
             auto e = malt::create_entity(entity["name"].as<std::string>());
