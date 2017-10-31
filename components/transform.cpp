@@ -12,10 +12,10 @@ namespace malt {
     {
         switch (s) {
         case space::self:
-            pos += rot * dis;
+            m_pos += rot * dis;
             break;
         case space::world:
-            pos += dis;
+            m_pos += dis;
             break;
         }
         set_local_dirty();
@@ -50,7 +50,7 @@ namespace malt {
         {
             auto s = glm::scale(scale);
             auto r = glm::toMat4(rot);
-            auto t = glm::translate(pos);
+            auto t = glm::translate(m_pos);
             m_local_mat = t * r * s;
             m_local_mat_dirty = false;
         }
@@ -97,17 +97,17 @@ namespace malt {
 
     glm::vec3 transform::get_up() const
     {
-        return rot * glm::vec3(0, 1, 0);
+        return get_world_mat4() * glm::vec4(0, 1, 0, 0);
     }
 
     glm::vec3 transform::get_forward() const
     {
-        return rot * glm::vec3(0, 0, 1);
+        return get_world_mat4() * glm::vec4(0, 0, 1, 0);
     }
 
     glm::vec3 transform::get_right() const
     {
-        return rot * glm::vec3(1, 0, 0);
+        return get_world_mat4() * glm::vec4(1, 0, 0, 0);
     }
 
     void transform::set_rotation(const glm::quat& q)
@@ -118,7 +118,7 @@ namespace malt {
 
     void transform::set_position(const glm::vec3& p)
     {
-        pos = p;
+        m_pos = p;
         set_local_dirty();
     }
 
@@ -153,15 +153,18 @@ namespace malt {
                 rotationAxis.y * invs,
                 rotationAxis.z * invs
         );
-
     }
-
 
     void transform::look_at(const glm::vec3& to)
     {
         using namespace glm;
         auto rotation = RotationBetweenVectors(get_forward(), to - get_pos());
         rotate(rotation, space::self);
+    }
+
+    glm::vec3 transform::get_pos() const
+    {
+        return get_world_mat4() * glm::vec4(0, 0, 0, 1);
     }
 
     void transform::Handle(malt::start) {

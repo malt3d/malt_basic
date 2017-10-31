@@ -21,7 +21,7 @@ namespace malt
         std::vector<track_ptr<transform>> m_children;
         track_ptr<transform> m_parent;
 
-        glm::vec3 pos;
+        glm::vec3 m_pos;
         glm::vec3 scale = {1, 1, 1};
         glm::quat rot;
 
@@ -55,17 +55,24 @@ namespace malt
         glm::vec3 get_up() const;
         glm::vec3 get_forward() const;
         glm::vec3 get_right() const;
+        glm::vec3 get_pos() const;
 
         void look_at(const glm::vec3& to);
 
-        const glm::vec3& get_pos() const { return pos; }
+        const glm::vec3& get_local_pos() const { return m_pos; }
+        const glm::vec3& get_local_scale() const { return scale; }
+        const glm::quat& get_local_rot() const { return rot; }
 
         void set_parent(transform* t);
         void set_world_dirty();
 
+        transform* get_parent() const {
+            return m_parent.get();
+        }
+
         REFLECT(malt::transform,
                 MEM(m_parent),
-                MEM(pos),
+                MEM(m_pos),
                 MEM(rot),
                 MEM(scale));
     };

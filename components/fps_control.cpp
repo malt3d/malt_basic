@@ -13,10 +13,10 @@ MALT_IMPLEMENT_COMP(fps_control)
 void fps_control::Handle(malt::update)
 {
     auto trans = get_component<malt::transform>();
-    glm::vec3 displacement;
+    glm::vec3 displacement {0, 0, 0};
     if (malt::input::get_key_down(malt::input::key_code::S))
     {
-        displacement += glm::vec3{0, 0, -1};
+       displacement += glm::vec3{0, 0, -1};
     }
     if (malt::input::get_key_down(malt::input::key_code::W))
     {
@@ -41,6 +41,18 @@ void fps_control::Handle(malt::update)
 
     trans->rotate(glm::vec3(diff.y, 0, 0));
     trans->rotate(glm::vec3(0, -diff.x, 0), malt::space::world);
+
+    malt::entity small_tp = malt::find_entity("small teapot");
+
+    auto tp_trans = small_tp.get_component<malt::transform>();
+    auto tp_pos = glm::vec3(tp_trans->get_world_mat4() * glm::vec4{0, 0, 0, 1});
+    if (malt::time::get_current_frame() == 0)
+    {
+        return;
+    }
+
+    if (malt::input::get_key_down(malt::input::key_code::L))
+        trans->look_at(tp_pos);
 }
 
 void fps_control::Handle(malt::start)

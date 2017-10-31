@@ -15,7 +15,7 @@ void rotate_comp::Handle(malt::update)
 void rotate_comp::Handle(malt::start)
 {
     auto t = get_component<malt::transform>();
-    t->rotate(glm::vec3{0, 0, 45}, malt::space::self);
+    //t->rotate(glm::vec3{0, 0, 45}, malt::space::self);
     t->translate({0, -2.5f, 5});
 }
 
