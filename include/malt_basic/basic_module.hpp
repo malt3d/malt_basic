@@ -12,10 +12,12 @@ namespace malt
 {
     class transform;
 }
+class rotate_comp;
+class fps_control;
 
 struct basic_module_def
 {
-    using components = malt::meta::list<class malt::transform, class rotate_comp, class fps_control>;
+    using components = malt::meta::list<malt::transform, rotate_comp, fps_control>;
 };
 
 #endif //MALT_BASIC_MODULE_HPP

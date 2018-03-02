@@ -22,17 +22,18 @@ set(HEADER_FILES
         ${HEADER_PATH}/scene.hpp
         )
 
-set(SOURCE_FILES components/transform.cpp basic_module.cpp components/fps_control.cpp components/rotate_comp.cpp src/scene.cpp)
+set(SOURCE_FILES components/transform.cpp components/fps_control.cpp components/rotate_comp.cpp src/scene.cpp)
 add_library(malt_basic ${MALT_LIB_TYPE} ${SOURCE_FILES} ${HEADER_FILES})
 
 malt_def_module(malt_basic)
-
-malt_add_module(malt_basic malt_core)
+malt_dependency(malt_basic malt_core)
+malt_components(malt_basic malt::transform rotate_comp fps_control)
 
 target_compile_definitions(malt_basic PUBLIC GLM_ENABLE_EXPERIMENTAL=1)
 target_include_directories(malt_basic PUBLIC ${GLM_INCLUDE_DIRS})
 
 malt_install(malt_basic ${HEADER_PATH})
+
 
 add_executable(tests test/test_transform.cpp)
 target_link_libraries(tests PUBLIC malt_basic)
